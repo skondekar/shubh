@@ -11,3 +11,4 @@ write '14:55:99'.
 write 'First CI TEST'.
 write '2nd CI TEST'.
 write '3rd CI TEST'.
+write '4th CI TEST'.
