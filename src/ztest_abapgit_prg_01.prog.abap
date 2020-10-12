@@ -9,3 +9,4 @@ write '10.12.2020'.
 write '14:55:99'.
 write '14:55:99'.
 write 'First CI TEST'.
+write '2nd CI TEST'.
