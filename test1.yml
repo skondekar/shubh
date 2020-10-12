@@ -15,17 +15,17 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm config set @sap:registry "https://registry.npmjs.org/"
-    npm install
-  displayName: 'npm install'
+#- script: |
+#    npm config set @sap:registry "https://registry.npmjs.org/"
+#    npm install
+#  displayName: 'npm install'
 
-- script: |
-    npm run test-azure
-  displayName: 'Execute Unit Tests'
+#- script: |
+#    npm run test-azure
+#  displayName: 'Execute Unit Tests'
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testRunner: JUnit
-    testResultsFiles: '**/test-results.xml'
+#- task: PublishTestResults@2
+#  condition: succeededOrFailed()
+#  inputs:
+#    testRunner: JUnit
+#    testResultsFiles: '**/test-results.xml'
