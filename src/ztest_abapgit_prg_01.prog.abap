@@ -4,4 +4,5 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT ZTEST_ABAPGIT_PRG_01.
-write 'Hello world Git now changed econd time'.
+write 'Hello world Git now changed second time'.
+write '10.12.2020'.
