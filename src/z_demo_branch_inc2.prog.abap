@@ -21,5 +21,8 @@ FORM process_2  USING    p_p1
                          p_p2.
 
 
+val_mul =  p1 * P2 .
+
+write :/ 'Multiply', val_mul.
 
 ENDFORM.
