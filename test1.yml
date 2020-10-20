@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 # Environment 
-EnvironmentNmae : 'NEW ENV'
+EnvironmentName : 'NEW ENV'
 #- script: |
 #    npm config set @sap:registry "https://registry.npmjs.org/"
 #    npm install
