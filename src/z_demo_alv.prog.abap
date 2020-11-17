@@ -18,7 +18,7 @@ SELECT-OPTIONS  S_VBELN For VBAK-VBELN.
 Types  : begin of g_type_s,
          repid type syrepid,
          end of g_type_s.
-***
+**
 data : gv_list_display type sap_bool,
        gs_globals type g_type_s.
 data : gv_header type string.
