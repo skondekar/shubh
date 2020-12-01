@@ -17,13 +17,7 @@ steps:
   displayName: 'Install Node.js'
 
 
-- task: Docker@2
-  displayName: build
-  inputs:
-    containerRegistry: Shubh1
-    repository: Shubh
-    command: build
-    Dockerfile: 'https://github.com/skondekar/shubh/Dockerfile'
+
 #- script: |
 #    npm config set @sap:registry "https://registry.npmjs.org/"
 #    npm install
