@@ -16,7 +16,7 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-steps:
+
 - task: Docker@2
   displayName: build
   inputs:
