@@ -23,7 +23,7 @@ steps:
     containerRegistry: Shubh1
     repository: Shubh
     command: build
-    Dockerfile: '/Dockerfile'
+    Dockerfile: '**/Dockerfile'
     buildContext: /
 
 #- script: |
