@@ -8,12 +8,15 @@ REPORT Z_DEMO_ALV.
 TABLES : VBAK.
 types  : begin of ty_vbak,
          vbeln type VBELN_VA,
-         erdat type erdat,
+*         erdat type erdat,
+*         auart type auart,
          netwr type netwr,
          end of ty_vbak.
 DATA : GR_TABLE TYPE REF TO CL_sALV_TABLE.
-SELECT-OPTIONS  S_ERDAT FOR VBAK-ERDAT.
+
 SELECT-OPTIONS  S_VBELN For VBAK-VBELN.
+*SELECT-OPTIONS  S_ERDAT FOR VBAK-ERDAT.
+*SELECT-OPTIONS  S_AUART FOR VBAK-AUART.
 
 Types  : begin of g_type_s,
          repid type syrepid,
@@ -27,10 +30,14 @@ data : it_vbak TYPE TABLE OF ty_VBAK,
        WA_VBAK TYPE TY_VBAK.
 
 gs_globals-repid = sy-repid.
-SELECT VBELN ERDAT
+SELECT VBELN
+*   ERDAT AUART
        NETWR
   FROM VBAK INTO TABLE IT_VBAK
-      WHERE ERDAT IN S_ERDAT.
+  WHERE VBELN IN S_VBELN
+*    AND ERDAT IN S_ERDAT.
+*     AND AUART IN S_AUART
+     .
 
   perform crt_cat using gr_table it_vbak.
   perform chg_cat using gr_table.
@@ -139,7 +146,7 @@ FORM USER_TOP_OF_LIST  USING    P_IR_TITLE_GRID
   p_ir_title_grid->create_header_information(
   row = zeile
   column = spalte
-  text = 'texts header').
+  text = 'Sales Order Details').
 p_ir_title_grid->set_grid_lines(
 value  = if_salv_form_c_grid_Lines=>no_lines
 ).

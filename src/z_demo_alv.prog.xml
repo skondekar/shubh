@@ -1886,16 +1886,23 @@
     </item>
     <item>
      <ID>S</ID>
-     <KEY>S_ERDAT</KEY>
+     <KEY>S_AUART</KEY>
      <ENTRY>.</ENTRY>
      <LENGTH>9</LENGTH>
      <SPLIT>D</SPLIT>
     </item>
     <item>
      <ID>S</ID>
+     <KEY>S_ERDAT</KEY>
+     <ENTRY>.</ENTRY>
+     <LENGTH>18</LENGTH>
+     <SPLIT>D</SPLIT>
+    </item>
+    <item>
+     <ID>S</ID>
      <KEY>S_VBELN</KEY>
      <ENTRY>.</ENTRY>
-     <LENGTH>9</LENGTH>
+     <LENGTH>22</LENGTH>
      <SPLIT>D</SPLIT>
     </item>
    </TPOOL>
