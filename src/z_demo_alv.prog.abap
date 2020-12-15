@@ -5,18 +5,19 @@
 *&---------------------------------------------------------------------*
 REPORT Z_DEMO_ALV.
 *-----
+*** nwe line added
 TABLES : VBAK.
 types  : begin of ty_vbak,
          vbeln type VBELN_VA,
-         erdat type erdat,
-         auart type auart,
+*         erdat type erdat,
+*         auart type auart,
          netwr type netwr,
          end of ty_vbak.
 DATA : GR_TABLE TYPE REF TO CL_sALV_TABLE.
 
 SELECT-OPTIONS  S_VBELN For VBAK-VBELN.
-SELECT-OPTIONS  S_ERDAT FOR VBAK-ERDAT.
-SELECT-OPTIONS  S_AUART FOR VBAK-AUART.
+*SELECT-OPTIONS  S_ERDAT FOR VBAK-ERDAT.
+*SELECT-OPTIONS  S_AUART FOR VBAK-AUART.
 
 Types  : begin of g_type_s,
          repid type syrepid,
@@ -31,7 +32,7 @@ data : it_vbak TYPE TABLE OF ty_VBAK,
 
 gs_globals-repid = sy-repid.
 SELECT VBELN
-   ERDAT AUART
+*   ERDAT AUART
        NETWR
   FROM VBAK INTO TABLE IT_VBAK
   WHERE VBELN IN S_VBELN
