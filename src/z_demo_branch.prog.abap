@@ -15,5 +15,6 @@ START-OF-SELECTION.
 perform process_1 using p1 p2.
 perform process_2 using p1 p2.
 write :/ 'Test  demo'.
+write :/ 'Test  demo2'.
 include Z_DEMo_BRANCH_INC1.
 include Z_DEMo_BRANCH_INC2.
