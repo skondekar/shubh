@@ -4,8 +4,7 @@
 *&
 *&---------------------------------------------------------------------*
 REPORT Z_DEMO_ALV.
-*-----
-*** nwe line added
+
 TABLES : VBAK.
 types  : begin of ty_vbak,
          vbeln type VBELN_VA,
