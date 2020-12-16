@@ -3,44 +3,46 @@
 *&---------------------------------------------------------------------*
 *&
 *&---------------------------------------------------------------------*
-REPORT Z_DEMO_ALV.
+REPORT z_demo_alv.
 
-TABLES : VBAK.
-types  : begin of ty_vbak,
-         vbeln type VBELN_VA,
-*         erdat type erdat,
-*         auart type auart,
-         netwr type netwr,
-         end of ty_vbak.
-DATA : GR_TABLE TYPE REF TO CL_sALV_TABLE.
+TABLES : vbak.
+TYPES  : BEGIN OF ty_vbak,
+         vbeln TYPE vbeln_va,
+         erdat TYPE erdat,
+         auart TYPE auart,
+         netwr TYPE netwr,
+         END OF ty_vbak.
+DATA : gr_table TYPE REF TO CL_sALV_TABLE.
 
-SELECT-OPTIONS  S_VBELN For VBAK-VBELN.
-*SELECT-OPTIONS  S_ERDAT FOR VBAK-ERDAT.
-*SELECT-OPTIONS  S_AUART FOR VBAK-AUART.
+SELECT-OPTIONS  s_vbeln FOR vbak-vbeln.
+SELECT-OPTIONS  s_erdat FOR vbak-erdat.
+SELECT-OPTIONS  s_auart FOR vbak-auart.
 
-Types  : begin of g_type_s,
-         repid type syrepid,
-         end of g_type_s.
-**
-data : gv_list_display type sap_bool,
-       gs_globals type g_type_s.
-data : gv_header type string.
-data : gr_functions type ref to cl_salv_functions_list.
-data : it_vbak TYPE TABLE OF ty_VBAK,
-       WA_VBAK TYPE TY_VBAK.
+TYPES  : BEGIN OF g_type_s,
+         repid TYPE syrepid,
+         END OF g_type_s.
+
+DATA : gv_list_display TYPE sap_bool,
+       gs_globals TYPE g_type_s.
+DATA : gv_header TYPE string.
+DATA : gr_functions TYPE REF TO cl_salv_functions_list.
+DATA : it_vbak TYPE TABLE OF ty_VBAK,
+       wa_vbak TYPE ty_vbak.
 
 gs_globals-repid = sy-repid.
-SELECT VBELN
-*   ERDAT AUART
-       NETWR
-  FROM VBAK INTO TABLE IT_VBAK
-  WHERE VBELN IN S_VBELN
-*    AND ERDAT IN S_ERDAT.
-*     AND AUART IN S_AUART
+
+SELECT vbeln
+       erdat
+       auart
+       netwr
+  FROM vbak INTO TABLE it_vbak
+  WHERE vbeln IN s_vbeln
+   AND erdat IN s_erdat
+   AND auart IN s_auart
      .
 
-  perform crt_cat using gr_table it_vbak.
-  perform chg_cat using gr_table.
+  PERFORM crt_cat USING gr_table it_vbak.
+  PERFORM chg_cat USING gr_table.
 
 gr_table->display( ).
 *&---------------------------------------------------------------------*
@@ -50,8 +52,8 @@ gr_table->display( ).
 *----------------------------------------------------------------------*
 *      -->P_GV_HEADER  text
 *----------------------------------------------------------------------*
-FORM USER_HEADER  USING    P_GV_HEADER.
-  data : datum(10) type C.
+FORM user_header  USING    p_gv_header.
+  DATA : datum(10) TYPE c.
 
   p_gv_header = 'Text-TH0'.
 
@@ -64,10 +66,10 @@ ENDFORM.                    " USER_HEADER
 *      -->P_GR_TABLE  text
 *      -->P_IT_VBAK  text
 *----------------------------------------------------------------------*
-FORM CRT_CAT  USING    P_GR_TABLE type REF TO cl_salv_table
-                       P_IT_VBAK.
+FORM crt_cat  USING    p_gr_table TYPE REF TO cl_salv_table
+                       p_it_vbak.
   TRY.
-  CL_SALV_TABLE=>FACTORY(
+  cl_salv_table=>factory(
   EXPORTING
     list_display = gv_list_display
   IMPORTING
@@ -75,7 +77,7 @@ FORM CRT_CAT  USING    P_GR_TABLE type REF TO cl_salv_table
    CHANGING
      t_table = p_it_vbak
         ).
-  catch cx_salv_msg.
+  CATCH cx_salv_msg.
 ENDTRY.
 
 gr_functions = gr_table->get_functions( ).
@@ -83,14 +85,14 @@ gr_table->set_screen_status(
 pfstatus = 'STANDARD'
 report  = gs_globals-repid
 set_functions = gr_table->c_functions_all ).
-data : ir_title_grid type REF TO cl_salv_form_layout_grid.
-create OBJECT ir_title_grid.
+DATA : ir_title_grid TYPE REF TO cl_salv_form_layout_grid.
+CREATE OBJECT ir_title_grid.
 ir_title_grid->set_grid_lines(
          value  = if_salv_form_C_grid_lines=>no_lines
          ).
-perform user_header using gv_header.
-perform set_header using gr_table gv_header.
-perform set_ttl using gr_table .
+PERFORM user_header USING gv_header.
+PERFORM set_header USING gr_table gv_header.
+PERFORM set_ttl USING gr_table .
 
 ENDFORM.                    " CRT_CAT
 *&---------------------------------------------------------------------*
@@ -100,11 +102,11 @@ ENDFORM.                    " CRT_CAT
 *----------------------------------------------------------------------*
 *      -->P_GR_TABLE  text
 *----------------------------------------------------------------------*
-FORM SET_TTL  USING    P_GR_TABLE type ref to cl_salv_table.
-data : ir_title_grid type ref to cl_salv_form_layout_grid.
-create object ir_title_grid.
+FORM set_ttl  USING    p_gr_table TYPE REF TO cl_salv_table.
+DATA : ir_title_grid TYPE REF TO cl_salv_form_layout_grid.
+CREATE OBJECT ir_title_grid.
 p_gr_table->set_top_of_list( value = ir_title_grid ).
-perform user_top_of_list using ir_title_grid.
+PERFORM user_top_of_list USING ir_title_grid.
 
 ENDFORM.                    " SET_TTL
 *&---------------------------------------------------------------------*
@@ -115,16 +117,16 @@ ENDFORM.                    " SET_TTL
 *      -->P_GR_TABLE  text
 *      -->P_GV_HEADER  text
 *----------------------------------------------------------------------*
-FORM SET_HEADER  USING    P_GR_TABLE type ref to cl_salv_table
-                          P_GV_HEADER.
-  data:  lr_display type ref to cl_salv_display_settings,
-        lv_header type lvc_title.
+FORM set_header  USING    p_gr_table TYPE REF TO cl_salv_table
+                          p_gv_header.
+  DATA:  lr_display TYPE REF TO cl_salv_display_settings,
+        lv_header TYPE lvc_title.
   lr_display = p_gr_table->get_display_settings( ).
-  if not p_gv_header is initial.
-    move gv_header to lv_header.
+  IF NOT p_gv_header IS INITIAL.
+    MOVE gv_header TO lv_header.
     lr_display->set_list_header_size( value = 0 ).
     lr_display->set_list_header( value =  lv_header  ).
-  endif.
+  ENDIF.
 ENDFORM.                    " SET_HEADER
 *&---------------------------------------------------------------------*
 *&      Form  USER_TOP_OF_LIST
@@ -133,16 +135,16 @@ ENDFORM.                    " SET_HEADER
 *----------------------------------------------------------------------*
 *      -->P_IR_TITLE_GRID  text
 *----------------------------------------------------------------------*
-FORM USER_TOP_OF_LIST  USING    P_IR_TITLE_GRID
-                       type REF TO cl_salv_form_layout_grid.
-  data : zeile type i,
-        spalte type i,
-        zloop type i,
-        wert(50) type c,
-        wertvon(10) type c,
-        werbis(10) type c.
-  add 1 to zeile.
-  add 1 to spalte.
+FORM user_top_of_list  USING    p_ir_title_grid
+                       TYPE REF TO cl_salv_form_layout_grid.
+  DATA : zeile TYPE i,
+        spalte TYPE i,
+        zloop TYPE i,
+        wert(50) TYPE c,
+        wertvon(10) TYPE c,
+        werbis(10) TYPE c.
+  ADD 1 TO zeile.
+  ADD 1 TO spalte.
   p_ir_title_grid->create_header_information(
   row = zeile
   column = spalte
@@ -158,14 +160,14 @@ ENDFORM.                    " USER_TOP_OF_LIST
 *----------------------------------------------------------------------*
 *      -->P_GR_TABLE  text
 *----------------------------------------------------------------------*
-FORM CHG_CAT  USING    P_GR_TABLE type REF TO cl_salv_table.
+FORM chg_cat  USING    p_gr_table TYPE REF TO cl_salv_table.
 
-data : lr_columns    type REF TO cl_salv_columns_table,
-       lr_column     type REF TO cl_salv_column_table,
-       lr_display    type REF TO cl_salv_display_settings,
+DATA : lr_columns    TYPE REF TO cl_salv_columns_table,
+       lr_column     TYPE REF TO cl_salv_column_table,
+       lr_display    TYPE REF TO cl_salv_display_settings,
        lr_selections TYPE REF TO cl_salv_selections,
        lt_rows       TYPE  salv_t_row,
-       lt_column     Type  salv_t_column,
+       lt_column     TYPE  salv_t_column,
        ls_cell       TYPE  salv_t_cell.
 
   lr_columns  = p_gr_table->get_columns( ).
