@@ -3,7 +3,7 @@
 	"name": "demo",
 	"version": "1.0.0",
 	"description": "A simple CAP project.",
-	"repository": "<Add your repository here>",
+	"repository": "skondekar/shubh",
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
