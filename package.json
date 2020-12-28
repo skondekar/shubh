@@ -3,7 +3,7 @@
 	"name": "demo",
 	"version": "1.0.0",
 	"description": "A simple CAP project.",
-	"repository": "skondekar/shubh",
+	"repository": "fcilpocconreg.azurecr.io/skondekar/shubh",
 	"license": "UNLICENSED",
 	"private": true,
 	"dependencies": {
