@@ -6,7 +6,7 @@ RUN apk update --no-cache && apk add --no-cache g++ make py2-packaging && rm -rf
 USER node
 RUN npm install && npm rebuild && rm -f .npmrc
 COPY package*.json ./
-ADD  ./src
+ADD  ./src  .
 
 #RUN npm install
 #RUN npm audit fix
