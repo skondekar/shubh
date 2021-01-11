@@ -8,7 +8,7 @@ name: cd-openui5-sample-app
 resources:
   containers:
   - container: mta
-    image: 'ppiper/mta-archive-builder:latest'
+    image: 'devxci/mbtci'
     options: --user 0:0
   - container: cfcli
     image: 'ppiper/cf-cli'
@@ -60,5 +60,4 @@ stages:
       steps:
         - download: current
           artifact: WebApp
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MySampleApp.mtar -f || true'
-​
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MySampleApp.mtar -f  || true'
