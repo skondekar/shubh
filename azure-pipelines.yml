@@ -4,7 +4,8 @@
 # https://aka.ms/yaml
 
 
-name: cd-openui5-sample-app
+#name: cd-openui5-sample-app
+name: ABAPGit_Pipeline
 resources:
   containers:
   - container: mta
