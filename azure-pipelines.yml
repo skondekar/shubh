@@ -1,21 +1,64 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+
+name: cd-openui5-sample-app
+resources:
+  containers:
+  - container: mta
+    image: 'ppiper/mta-archive-builder:latest'
+    options: --user 0:0
+  - container: cfcli
+    image: 'ppiper/cf-cli'
+    options: --user 0:0 --privileged
+  - container: node
+    image: 'geekykaran/headless-chrome-node-docker:latest'
+    options: --privileged
+
 
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+stages:
+- stage: build
+  displayName: Build MTA for SAP Cloud Platform
+  jobs:
+    - job: build
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: mta
+      steps:
+        - bash: 'mtaBuild --build-target CF --mtar MySampleApp.mtar build || true'
+        - publish: $(System.DefaultWorkingDirectory)/.
+          artifact: WebApp
+          
 
-#- script: |
-#    npm install
-#    npm run build
-#  displayName: 'npm install and build'
+
+- stage: test
+  displayName: Run Karma Test Suite
+  jobs:
+    - job: test
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: node
+      steps:
+        - bash: 'cd MySampleApp && npm config set @sap:registry "https://npm.sap.com" && npm install && npm run-script test || true'
+        - publish: $(System.DefaultWorkingDirectory)/.
+          artifact: TestResult
+
+
+- stage: deploy
+  displayName: Deployment to SAP Cloud Platform (cf)
+  jobs:
+    - job: deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: cfcli
+      steps:
+        - download: current
+          artifact: WebApp
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MySampleApp.mtar -f || true'
+​
