@@ -46,7 +46,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: node
       steps:
-        - bash: 'cd MySampleApp && npm config set @sap:registry "https://npm.sap.com" && npm install && npm run-script test || true'
+        - bash: 'cd MySampleApp && npm config set @sap:registry "https://npm.sap.com" && npm install && npm run-script test  true'
         - publish: $(System.DefaultWorkingDirectory)/.
           artifact: TestResult
 
