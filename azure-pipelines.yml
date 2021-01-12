@@ -60,5 +60,5 @@ stages:
       container: cfcli
       steps:
         - download: current
-          artifact: WebApp
+          artifact: Scr
         - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MySampleApp.mtar -f  || true'
