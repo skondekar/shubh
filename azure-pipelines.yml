@@ -34,7 +34,7 @@ stages:
       steps:
         - bash: 'mtaBuild --build-target CF --mtar MySampleApp.mtar build || true'
         - publish: $(System.DefaultWorkingDirectory)/.
-          artifact: WebApp
+          artifact: Src
           
 
 
