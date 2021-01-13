@@ -32,7 +32,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: mta
       steps:
-        - bash: 'mtaBuild --build-target CF --mtar MySampleApp.mtar build true'
+        - bash: 'mtaBuild --build-target CF --mtar MySampleApp002.mtar build || true'
         - publish: $(System.DefaultWorkingDirectory)/.
           artifact: WebApp
           
@@ -46,7 +46,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: node
       steps:
-        - bash: 'cd MySampleApp && npm config set @sap:registry "https://npm.sap.com" && npm install && npm run-script test '
+        - bash: 'cd MySampleApp002 && npm config set @sap:registry "https://npm.sap.com" && npm install && npm run-script test || true'
         - publish: $(System.DefaultWorkingDirectory)/.
           artifact: TestResult
 
@@ -61,4 +61,4 @@ stages:
       steps:
         - download: current
           artifact: WebApp
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" '
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/MySampleApp002.mtar -f'
