@@ -1,0 +1,84 @@
+_schema-version: "3.2"
+ID: MySampleApp002
+version: 0.0.1
+modules:
+- name: MySampleApp002-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: MySampleApp002-destination-service
+    parameters:
+      content-target: true
+  - name: MySampleApp002_html_repo_host
+    parameters:
+      service-key:
+        name: MySampleApp002_html_repo_host-key
+  - name: uaa_MySampleApp002
+    parameters:
+      service-key:
+        name: uaa_MySampleApp002-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: 001_MySampleApp002_html_repo_host
+          ServiceInstanceName: MySampleApp002-html5-app-host-service
+          ServiceKeyName: MySampleApp002_html_repo_host-key
+          sap.cloud.service: "001"
+        - Authentication: OAuth2UserTokenExchange
+          Name: 001_uaa_MySampleApp002
+          ServiceInstanceName: MySampleApp002-xsuaa-service
+          ServiceKeyName: uaa_MySampleApp002-key
+          sap.cloud.service: "001"
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: MySampleApp002_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: MySampleApp002_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - HTML5Module-content.zip
+      name: HTML5Module
+      target-path: resources/
+- name: HTML5Module
+  type: html5
+  path: HTML5Module
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: MySampleApp002-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: MySampleApp002-destination-service
+    service-plan: lite
+- name: MySampleApp002_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: MySampleApp002-html5-app-host-service
+    service-plan: app-host
+- name: uaa_MySampleApp002
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: MySampleApp002-xsuaa-service
+    service-plan: application
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
