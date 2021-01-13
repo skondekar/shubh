@@ -34,7 +34,7 @@ stages:
       steps:
         - bash: 'mtaBuild --build-target CF --mtar MySampleApp.mtar build || true'
         - publish: $(System.DefaultWorkingDirectory)/.
-          artifact: Src
+          artifact: WebApp
           
 
 
@@ -60,5 +60,5 @@ stages:
       container: cfcli
       steps:
         - download: current
-          artifact: Src
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)"'
+          artifact: WebApp
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/WebApp/package.json -f'
