@@ -31,7 +31,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: mta
       steps:
-        - bash: 'mtaBuild --build-target CF --mtar MySampleApp002.mtar build'
+        -bash: 'mbt build -p=cf'
         - publish: $(System.DefaultWorkingDirectory)/.
           artifact: WebApp
           
