@@ -4,7 +4,8 @@ node() {
         checkout scm
         setupCommonPipelineEnvironment script:this
     }
+ 
+}
     stage('Deploy') {
         echo 'Deploying...'
-    }    
-}
+    }   
