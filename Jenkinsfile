@@ -1,11 +1,15 @@
 @Library('piper-lib-os') _
 node() {
-    stage('prepare') {
-        checkout scm
-        setupCommonPipelineEnvironment script:this
+    
+    stages {
+        stage('prepare') {
+            checkout scm
+            setupCommonPipelineEnvironment script:this
+        }    
+
+        stage('Deploy') {
+        }
     }
+
 }
 
-stage('Deploy') {
-    gctsDeploy script: this,
-}
