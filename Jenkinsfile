@@ -1,4 +1,5 @@
 library('piper-lib-os')
+node() {
     gctsCreateRepository(
       script: this,
       host: 'https://fc-pun01-hana.india.rapidigm.com:8001',
@@ -9,3 +10,4 @@ library('piper-lib-os')
       role: 'SOURCE',
       vSID: 'S4D'
     )
+  }
