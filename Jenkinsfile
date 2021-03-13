@@ -1,4 +1,4 @@
-library('piper-lib-os')
+library('piper-lib-os') _
 node() {
   stage('Create Repository') {
     gctsCreateRepository(
