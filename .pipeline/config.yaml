@@ -1,16 +1,3 @@
 general:
 steps:
-  gctsCreateRepository:
-    host: 'https://fc-pun01-hana.india.rapidigm.com:8001'
-    client: '300'
-    abapCredentialsId: 'ABAPUserPasswordCredentialsId'
-    repository: 'DEV003'
-    remoteRepositoryURL: 'https://github.com/skondekar/shubh'
-    role: 'SOURCE'
-    typetype: 'GIT'
-    vSID: 'S4D'  
-  gctsCloneRepository:
-    host: 'https://fc-pun01-hana.india.rapidigm.com:8001'
-    client: '300'
-    abapCredentialsId: 'ABAPUserPasswordCredentialsId'
-    repository: 'S4D'
+
