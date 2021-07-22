@@ -3,7 +3,7 @@ node() {
   stage('Deploy') {
     gctsDeploy(
         script: this,
-        host: 'http://10.34.156.145:8000',
+        host: 'http://10.34.156.145:8002',
         client: '300',
         abapCredentialsId: 'ABAPUserPasswordCredentialsId',
         repository: 'DEV003',
