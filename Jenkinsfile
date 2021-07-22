@@ -12,10 +12,10 @@ node() {
   stage('Deploy Commit') {
     gctsDeploy(
       script: this,
-      host: 'https://10.34.156.145:8001',
-      client: '300',
+      host: 'convtest01.brj4t0c5xzounazuu03dnn:44300',
+      client: '100',
       abapCredentialsId: 'ABAPUserPasswordCredentialsId',
-      repository: 'DEV003',
+      repository: 'skondekar-shubh',
       remoteRepositoryURL: "https://github.com/skondekar/shubh",
       role: 'TARGET',
       vSID: 'S4D',
