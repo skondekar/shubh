@@ -1,7 +1,7 @@
 general:
 Steps:
   gctsDeploy:
-    host: 'http2://10.34.156.145:8001'
+    host: 'https://10.34.156.145:8001'
     client: '300'
     abapCredentialsId: 'ABAPUserPasswordCredentialsId'
     repository: 'DEV003'
