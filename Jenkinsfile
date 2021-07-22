@@ -1,5 +1,12 @@
 library('piper-lib-os') _
+
 node() {
+  stage('Prepare') {
+      deleteDir()
+      checkout scm
+      setupCommonPipelineEnvironment script:this
+  }  
+  
   stage('Build')
   
   stage('Run Unit Test') {
