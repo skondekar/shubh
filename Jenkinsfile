@@ -1,7 +1,8 @@
 library('piper-lib-os') _
 node() {
+  stage('Build')
+  
   stage('Run Unit Test') {
-    piperPipeline script: this
     gctsExecuteABAPUnitTests script: this
   }
   
