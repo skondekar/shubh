@@ -3,7 +3,7 @@ general:
 Steps:
 
   gctsExecuteABAPUnitTests:
-      host: 'http://10.34.156.145:8002'
+      host: 'https://10.34.156.145:8001'
       client: '300'
       abapCredentialsId: 'ABAPUserPasswordCredentialsId'
       repository: 'DEV003'
