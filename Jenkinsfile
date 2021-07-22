@@ -12,7 +12,7 @@ node() {
   stage('Deploy Commit') {
     gctsDeploy(
       script: this,
-      host: 'convtest01.brj4t0c5xzounazuu03dnn:44300',
+      host: 'https://convtest01.brj4t0c5xzounazuu03dnn:44300',
       client: '100',
       abapCredentialsId: 'ABAPUserPasswordCredentialsId',
       repository: 'skondekar-shubh',
