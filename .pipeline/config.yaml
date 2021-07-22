@@ -16,13 +16,13 @@ Steps:
     configuration:
         dummyconfig: "dummyval"
   gctsExecuteABAPUnitTests:
-      host: 'https://10.34.156.145:8001'
+      host: 'http://172.16.10.101:8000'
       client: '300'
       abapCredentialsId: 'ABAPUserPasswordCredentialsId'
       repository: 'DEV003'
       verbose: true
    gctsRollback:
-      host: "https://10.34.156.145:8001"
-      client: "300"
+      host: 'http://172.16.10.101:8000'
+      client: '300'
       abapCredentialsId: 'ABAPUserPasswordCredentialsId'
-      repository: "DEV003"
+      repository: 'DEV003'
