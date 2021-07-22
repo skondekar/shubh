@@ -17,12 +17,13 @@ node() {
       abapCredentialsId: 'ABAPUserPasswordCredentialsId',
       repository: 'DEV003',
       remoteRepositoryURL: "https://github.com/skondekar/shubh",
-      role: 'SOURCE',
+      role: 'TARGET',
       vSID: 'S4D',
       branch: 'master',
       commit: 'commit',
       scope: 'scope',
       rollback: false,
+      verbose: true,
       configuration: [dummyConfig: 'dummyval']   
     )
   }
