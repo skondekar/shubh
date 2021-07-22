@@ -8,6 +8,10 @@ node() {
   }  
   
   stage('Build')
+
+  stage('Deploy Commit') {
+    gctsDeploy script: this
+  }
   
   stage('Run Unit Test') {
     gctsExecuteABAPUnitTests script: this
