@@ -1,3 +1,4 @@
+#Steps Specific Configuration
 general:
 Steps:
   gctsDeploy:
@@ -14,3 +15,13 @@ Steps:
     rollback: false
     configuration:
         dummyconfig: "dummyval"
+  gctsExecuteABAPUnitTests:
+      host: 'http://10.34.156.145:8002'
+      client: '300'
+      abapCredentialsId: 'ABAPUserPasswordCredentialsId'
+      repository: 'DEV003'
+   gctsRollback:
+      host: "http://10.34.156.145:8002"
+      client: "300"
+      abapCredentialsId: 'ABAPUserPasswordCredentialsId'
+      repository: "DEV003"
