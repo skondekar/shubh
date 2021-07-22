@@ -1,11 +1,16 @@
 general:
-steps:
-  gctsCreateRepository:
-    host: 'https://fc-pun01-hana.india.rapidigm.com:8001'
+Steps:
+  gctsDeploy:
+    host: 'http2://10.34.156.145:8001'
     client: '300'
     abapCredentialsId: 'ABAPUserPasswordCredentialsId'
     repository: 'DEV003'
-    remoteRepositoryURL: 'https://github.com/skondekar/shubh'
+    remoteRepositoryURL: "https://github.com/skondekar/shubh"
     role: 'SOURCE'
-    typetype: 'GIT'
-    vSID: 'S4D' 
+    vSID: 'S4D'
+    branch: 'master'
+    commit: 'commit'
+    scope: 'scope'
+    rollback: false
+    configuration:
+        dummyconfig: "dummyval"
