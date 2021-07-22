@@ -29,12 +29,22 @@ node() {
   }
   
   stage('Run Unit Test') {
-    gctsExecuteABAPUnitTests script: this
+    gctsExecuteABAPUnitTests( 
+      script: this, 
+      host: 'http://172.16.10.101:8000',
+      client: '300',
+      abapCredentialsId: 'ABAPUserPasswordCredentialsId',
+      repository: 'DEV003'     
+    )
   }
   
   stage('Roll Back Commit') {
     gctsRollback( 
-      script: this
+      script: this,
+      host: 'http://172.16.10.101:8000',
+      client: '300',
+      abapCredentialsId: 'ABAPUserPasswordCredentialsId',
+      repository: 'DEV003'      
     )
   }
 }
