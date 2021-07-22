@@ -1,14 +1,28 @@
 #Steps Specific Configuration
 general:
 Steps:
+  gctsDeploy:
+    host: 'https://10.34.156.145:8001'
+    client: '300'
+    abapCredentialsId: 'ABAPUserPasswordCredentialsId'
+    repository: 'DEV003'
+    remoteRepositoryURL: "https://github.com/skondekar/shubh"
+    role: 'TARGET'
+    vSID: 'S4D'
+    branch: 'master'
+    commit: 'commit'
+    scope: 'scope'
+    rollback: false
+    configuration:
+        dummyconfig: "dummyval"
   gctsExecuteABAPUnitTests:
       host: 'https://10.34.156.145:8001'
       client: '300'
       abapCredentialsId: 'ABAPUserPasswordCredentialsId'
       repository: 'DEV003'
-      verbose: 'true'
+      verbose: true
    gctsRollback:
-      host: "http://10.34.156.145:8002"
+      host: "https://10.34.156.145:8001"
       client: "300"
       abapCredentialsId: 'ABAPUserPasswordCredentialsId'
       repository: "DEV003"
