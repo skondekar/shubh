@@ -32,9 +32,9 @@ node() {
     gctsExecuteABAPUnitTests( 
       script: this, 
       host: 'http://172.16.10.101:8000',
-      client: '300',
+      client: '100',
       abapCredentialsId: 'ABAPUserPasswordCredentialsId',
-      repository: 'DEV003'     
+      repository: 'skondekar-shubh'     
     )
   }
   
@@ -42,9 +42,9 @@ node() {
     gctsRollback( 
       script: this,
       host: 'http://172.16.10.101:8000',
-      client: '300',
+      client: '100',
       abapCredentialsId: 'ABAPUserPasswordCredentialsId',
-      repository: 'DEV003'      
+      repository: 'skondekar-shubh'      
     )
   }
 }
