@@ -1,12 +1,12 @@
 #Steps Specific Configuration
 general:
 Steps:
-
   gctsExecuteABAPUnitTests:
       host: 'https://10.34.156.145:8001'
       client: '300'
       abapCredentialsId: 'ABAPUserPasswordCredentialsId'
       repository: 'DEV003'
+      verbose: 'true'
    gctsRollback:
       host: "http://10.34.156.145:8002"
       client: "300"
