@@ -6,3 +6,4 @@
 REPORT ZDSS_06.
 
 Write:/ 'Version 01'.
+Write:/ 'Version 02'.
